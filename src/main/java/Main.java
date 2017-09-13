@@ -5,21 +5,36 @@ import java.util.Scanner;
 
 public class Main implements CalculatorInterface {
 
-    static final String OPERATOR_TOKENS = "+-*/^";
+    static final String OPERATOR_TOKENS = "-+*\\/^";
 
     boolean nextTokenIsDouble(String token) {
         Scanner in = new Scanner(token);
         return in.hasNextDouble();
     }
 
+    boolean nextTokenIsOperator(String token) {
+        System.out.println(token);
+        System.out.println(token.matches("[OPERATOR_TOKENS]"));
+        return true;
+    }
+
     public TokenList readTokens(String input) {
         Scanner in = new Scanner(input);
-        TokenList result = new TokenList();
+        while(in.hasNext()){
+            String currentToken = in.next();
+            if(nextTokenIsDouble(currentToken)){
+                System.out.println(currentToken);
+            }
+            else if(nextTokenIsOperator(currentToken)){
+                System.out.println("");
+            }
+            else{
+                System.out.println("parentesis");
+            }
 
-        if(nextTokenIsDouble(input)){
-            System.out.println(input);
-            )
         }
+
+
         return null;
     }
 
@@ -35,7 +50,7 @@ public class Main implements CalculatorInterface {
 
     String read(){
         Scanner in = new Scanner(System.in);
-        String result = in.next();
+        String result = in.nextLine();
         return result;
     }
 
