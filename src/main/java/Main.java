@@ -5,12 +5,15 @@ import java.util.Scanner;
 
 public class Main implements CalculatorInterface {
 
-
-    public TokenList readTokens(String input) {
-        // TODO: Implement this
-        return null;
+    boolean nextTokenIsDouble(String token) {
+        Scanner in = new Scanner(token);
+        return in.hasNextDouble();
     }
 
+    public TokenList readTokens(String input) {
+        if
+        return null;
+    }
 
     public Double rpn(TokenList tokens) {
         // TODO: Implement this
@@ -22,10 +25,17 @@ public class Main implements CalculatorInterface {
         return null;
     }
 
+    String read(){
+        Scanner in = new Scanner(System.in);
+        String result = in.next();
+        return result;
+    }
+
     private void start() {
-        // Create a scanner on System.in
-        
-        // While there is input, read line and parse it.
+        System.out.println("enter formula:");
+        String formula = read();
+        System.out.println(formula);
+        readTokens(formula);
     }
 
     public static void main(String[] argv) {

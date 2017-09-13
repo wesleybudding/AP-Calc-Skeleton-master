@@ -5,6 +5,7 @@
  */
 interface TokenList {
 
+
     /**
      * @pre -
      * @post The token 'token' has been added at the end of the TokenList, 
