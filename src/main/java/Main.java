@@ -17,7 +17,6 @@ public class Main implements CalculatorInterface {
 
     public TokenList readTokens(String input) {
         Scanner in = new Scanner(input);
-        TokenList
         while(in.hasNext()){
             String currentToken = in.next();
             if(nextTokenIsDouble(currentToken)){
