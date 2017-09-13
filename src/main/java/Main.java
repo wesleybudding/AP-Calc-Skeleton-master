@@ -15,9 +15,9 @@ public class Main implements CalculatorInterface {
 
     }
 
-    public TokenList_interface readTokens(String input) {
+    public TokenList readTokens(String input) {
         Scanner in = new Scanner(input);
-        TokenList_interface
+        TokenList
         while(in.hasNext()){
             String currentToken = in.next();
             if(nextTokenIsDouble(currentToken)){
@@ -36,12 +36,12 @@ public class Main implements CalculatorInterface {
         return null;
     }
 
-    public Double rpn(TokenList_interface tokens) {
+    public Double rpn(TokenList tokens) {
         // TODO: Implement this
         return null;
     }
 
-    public TokenList_interface shuntingYard(TokenList_interface tokens) {
+    public TokenList shuntingYard(TokenList tokens) {
         // TODO: Implement this
         return null;
     }
