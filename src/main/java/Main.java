@@ -15,6 +15,12 @@ public class Main implements CalculatorInterface {
 
     }
 
+    boolean nextTokenIsParentheses(String token) {
+        System.out.println(token);
+        return token.matches("[()]");
+
+    }
+
     public TokenList readTokens(String input) {
         Scanner in = new Scanner(input);
         TokenList result = new TokenList(input.length());
@@ -27,8 +33,12 @@ public class Main implements CalculatorInterface {
             else if(nextTokenIsOperator(currentToken)){
                 result.add(parseOperator(currentToken));
             }
-            else{
+            else if(nextTokenIsParentheses(currentToken)){
                 result.add(parseParentheses(currentToken));
+            }
+            else{
+                System.out.println("error");
+                System.exit();
             }
 
         }
