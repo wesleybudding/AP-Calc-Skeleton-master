@@ -5,13 +5,21 @@ import java.util.Scanner;
 
 public class Main implements CalculatorInterface {
 
+    static final String OPERATOR_TOKENS = "+-*/^";
+
     boolean nextTokenIsDouble(String token) {
         Scanner in = new Scanner(token);
         return in.hasNextDouble();
     }
 
     public TokenList readTokens(String input) {
-        if
+        Scanner in = new Scanner(input);
+        TokenList result = new TokenList();
+
+        if(nextTokenIsDouble(input)){
+            System.out.println(input);
+            )
+        }
         return null;
     }
 
