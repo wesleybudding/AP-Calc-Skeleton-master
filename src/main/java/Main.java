@@ -17,7 +17,7 @@ public class Main implements CalculatorInterface {
 
     public TokenList readTokens(String input) {
         Scanner in = new Scanner(input);
-        TokenList result = new TokenList(input.length());
+        TokenList result = new TokenList();
 
         while(in.hasNext()){
             String currentToken = in.next();
@@ -30,8 +30,9 @@ public class Main implements CalculatorInterface {
             else{
                 result.add(parseParentheses(currentToken));
             }
-
         }
+
+        result.remove(3);
         return null;
     }
 
