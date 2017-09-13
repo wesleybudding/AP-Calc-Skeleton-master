@@ -1,34 +1,29 @@
 /**
- * Token interface. 
- * @elements characters
- * @structure linear
- * @domain all rows of characters
+ * Created by lucasfaijdherbe on 13-09-17.
  */
-public interface Token {
-    int     NUMBER_TYPE = 1,
+public abstract class Token implements TokenInterface {
+
+    static final int    NUMBER_TYPE = 1,
             OPERATOR_TYPE = 2,
             PARENTHESIS_TYPE = 3;
 
-    /**
-     * @pre -
-     * @post The value associated with this token has been returned a String.
-     */
-    String getValue();
 
+    int tokenType;
+    String token;
 
-    /**
-     * @pre -
-     * @post The type of this object, represented as an int, has been returned.
-     */
-    int getType();
+    Token(String token){
+        this.token = token;
+    }
 
-    /**
-     * @pre -
-     * @post The precedence of the token, represented by an int, 
-     * has been returned. Higher int's signify a higher precedence. 
-     * If token type does not need a precedence,
-     * the result of this method is -1.
-     */
-    int getPrecedence();
+    public String getValue() {
+        return null;
+    }
 
+    public int getType() {
+        return tokenType;
+    }
+
+    public int getPrecedence() {
+        return 0;
+    }
 }

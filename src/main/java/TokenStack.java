@@ -1,5 +1,5 @@
 /**
- * @elements Tokens of the type Token
+ * @elements Tokens of the type TokenInterface
  * @structure linear
  * @domain all rows of tokens
  **/
@@ -7,21 +7,21 @@ public interface TokenStack {
 
     /**
      * @pre -
-     * @post token Token is now at the top of the stack.
+     * @post token TokenInterface is now at the top of the stack.
      */
-    void push(Token token);
+    void push(TokenInterface token);
 
     /**
      * @pre The stack is not empty
      * @post The token at the top of the stack is returned and deleted.
      */
-    Token pop();
+    TokenInterface pop();
 
     /**
      * @pre The stack is not empty
      * @post The token at the top of the stack is returned.
      */
-    Token top();
+    TokenInterface top();
 
     /**
      * @pre -
