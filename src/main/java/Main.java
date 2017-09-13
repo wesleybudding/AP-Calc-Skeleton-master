@@ -1,11 +1,8 @@
-import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main implements CalculatorInterface {
 
-    static final String OPERATOR_TOKENS = "-+*\\/^";
+    static final String OPERATOR_TOKENS = "-+*/^";
 
     boolean nextTokenIsDouble(String token) {
         Scanner in = new Scanner(token);
@@ -14,22 +11,23 @@ public class Main implements CalculatorInterface {
 
     boolean nextTokenIsOperator(String token) {
         System.out.println(token);
-        System.out.println(token.matches("[OPERATOR_TOKENS]"));
-        return true;
+        return token.matches("[-+*/^]");
+
     }
 
-    public TokenList readTokens(String input) {
+    public TokenList_interface readTokens(String input) {
         Scanner in = new Scanner(input);
+        TokenList_interface
         while(in.hasNext()){
             String currentToken = in.next();
             if(nextTokenIsDouble(currentToken)){
                 System.out.println(currentToken);
             }
             else if(nextTokenIsOperator(currentToken)){
-                System.out.println("");
+                System.out.println("opperator");
             }
             else{
-                System.out.println("test");
+                System.out.println("paren");
             }
 
         }
@@ -38,12 +36,12 @@ public class Main implements CalculatorInterface {
         return null;
     }
 
-    public Double rpn(TokenList tokens) {
+    public Double rpn(TokenList_interface tokens) {
         // TODO: Implement this
         return null;
     }
 
-    public TokenList shuntingYard(TokenList tokens) {
+    public TokenList_interface shuntingYard(TokenList_interface tokens) {
         // TODO: Implement this
         return null;
     }
