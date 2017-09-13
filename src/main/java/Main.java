@@ -33,12 +33,12 @@ public class Main implements CalculatorInterface {
             else if(nextTokenIsOperator(currentToken)){
                 result.add(parseOperator(currentToken));
             }
-            else if(){
+            else if(nextTokenIsParentheses(currentToken)){
                 result.add(parseParentheses(currentToken));
             }
             else{
                 System.out.println("error");
-                System.exit();
+                System.exit(0);
             }
 
         }
