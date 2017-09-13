@@ -17,22 +17,47 @@ public class Main implements CalculatorInterface {
 
     public TokenList readTokens(String input) {
         Scanner in = new Scanner(input);
+        TokenList result = new TokenList(input.length());
+
         while(in.hasNext()){
             String currentToken = in.next();
             if(nextTokenIsDouble(currentToken)){
-                System.out.println(currentToken);
+                result.add(parseNumber(currentToken));
             }
             else if(nextTokenIsOperator(currentToken)){
-                System.out.println("opperator");
+                result.add(parseOperator(currentToken));
             }
             else{
-                System.out.println("paren");
+                result.add(parseParentheses(currentToken));
             }
 
         }
-
-
         return null;
+    }
+
+    Token parseNumber(String token){
+        Token t = new Token(token,1,-1);
+        return t;
+    }
+
+    Token parseOperator(String token){
+        if (token.matches("[-+]")){
+            Token t = new Token(token,2,1);
+            return t;
+        }
+        else if (token.matches("[*/]")){
+            Token t = new Token(token,2,2);
+            return t;
+        }
+        else{
+            Token t = new Token(token,2,3);
+            return t;
+        }
+    }
+
+    Token parseParentheses(String token){
+        Token t = new Token(token,3,-1);
+        return t;
     }
 
     public Double rpn(TokenList tokens) {

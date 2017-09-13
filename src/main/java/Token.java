@@ -1,7 +1,7 @@
 /**
  * Created by lucasfaijdherbe on 13-09-17.
  */
-public abstract class Token implements TokenInterface {
+public class Token implements TokenInterface {
 
     static final int    NUMBER_TYPE = 1,
             OPERATOR_TYPE = 2,
@@ -9,14 +9,18 @@ public abstract class Token implements TokenInterface {
 
 
     int tokenType;
-    String token;
+    String value;
+    int type;
+    int precedence;
 
-    Token(String token){
-        this.token = token;
+    Token(String token, int type, int precedence){
+        this.value = token;
+        this.type = type;
+        this.precedence = precedence;
     }
 
     public String getValue() {
-        return null;
+        return value;
     }
 
     public int getType() {
@@ -24,6 +28,6 @@ public abstract class Token implements TokenInterface {
     }
 
     public int getPrecedence() {
-        return 0;
+        return precedence;
     }
 }

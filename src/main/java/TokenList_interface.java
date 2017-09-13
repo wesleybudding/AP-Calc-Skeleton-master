@@ -7,7 +7,7 @@ interface TokenList_interface {
 
     /**
      * @pre -
-     * @post The token 'token' has been added at the end of the TokenList,
+     * @post The value 'value' has been added at the end of the TokenList,
      *       preserving the previous order.
      */
     void add(Token token);
@@ -25,7 +25,7 @@ interface TokenList_interface {
      * @param index The index to be set
      * @param token The value to set the element at location index to.
      * @pre   index < size();
-     * @post  The element at location 'index' has the value 'token', preserving the previous order.
+     * @post  The element at location 'index' has the value 'value', preserving the previous order.
      */
     void set(int index, Token token);
 

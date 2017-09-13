@@ -11,7 +11,7 @@ public interface TokenInterface {
 
     /**
      * @pre -
-     * @post The value associated with this token has been returned a String.
+     * @post The value associated with this value has been returned a String.
      */
     String getValue();
 
@@ -24,9 +24,9 @@ public interface TokenInterface {
 
     /**
      * @pre -
-     * @post The precedence of the token, represented by an int, 
+     * @post The precedence of the value, represented by an int,
      * has been returned. Higher int's signify a higher precedence. 
-     * If token type does not need a precedence,
+     * If value type does not need a precedence,
      * the result of this method is -1.
      */
     int getPrecedence();

@@ -7,19 +7,19 @@ public interface TokenStack {
 
     /**
      * @pre -
-     * @post token TokenInterface is now at the top of the stack.
+     * @post value TokenInterface is now at the top of the stack.
      */
     void push(TokenInterface token);
 
     /**
      * @pre The stack is not empty
-     * @post The token at the top of the stack is returned and deleted.
+     * @post The value at the top of the stack is returned and deleted.
      */
     TokenInterface pop();
 
     /**
      * @pre The stack is not empty
-     * @post The token at the top of the stack is returned.
+     * @post The value at the top of the stack is returned.
      */
     TokenInterface top();
 
