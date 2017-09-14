@@ -7,7 +7,6 @@ public class Token implements TokenInterface {
             OPERATOR_TYPE = 2,
             PARENTHESIS_TYPE = 3;
 
-    private int tokenType;
     private String value;
     private int type;
     private int precedence;
@@ -23,7 +22,7 @@ public class Token implements TokenInterface {
     }
 
     public int getType() {
-        return tokenType;
+        return type;
     }
 
     public int getPrecedence() {

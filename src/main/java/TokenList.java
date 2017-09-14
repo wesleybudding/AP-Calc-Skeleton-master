@@ -7,7 +7,7 @@ public class TokenList implements TokenList_interface {
     private int top = 0;
 
     TokenList(){
-        array = new Token[1000000];
+        array = new Token[100000000];
     }
 
     public void add(Token token) {
@@ -22,14 +22,14 @@ public class TokenList implements TokenList_interface {
             }
         }
         else{
-            return;  // ERROR
+            throw new ArrayIndexOutOfBoundsException();
         }
     }
 
     public void set(int index, Token token) {
         if (withinRange(index)){
-            for(int i = index; i < ++top; i++){
-                array[i + 1] = array[i];
+            for(int i = ++top; i > index; i++){
+                array[i] = array[i - 1];
             }
             array[index] = token;
         }
@@ -43,7 +43,7 @@ public class TokenList implements TokenList_interface {
     }
 
     public int size() {
-        return 0;
+        return top-1;
     }
 
     boolean withinRange(int i){
