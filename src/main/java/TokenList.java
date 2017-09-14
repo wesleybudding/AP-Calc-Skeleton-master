@@ -3,13 +3,12 @@
  */
 public class TokenList implements TokenList_interface {
 
-    Token[] array;
-    int top = 0;
+    private Token[] array;
+    private int top = 0;
 
     TokenList(){
-        array = new Token[100000];
+        array = new Token[1000000];
     }
-
 
     public void add(Token token) {
         array[top] = token;
@@ -29,7 +28,10 @@ public class TokenList implements TokenList_interface {
 
     public void set(int index, Token token) {
         if (withinRange(index)){
-
+            for(int i = index; i < ++top; i++){
+                array[i + 1] = array[i];
+            }
+            array[index] = token;
         }
     }
 

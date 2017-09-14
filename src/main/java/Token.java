@@ -7,11 +7,10 @@ public class Token implements TokenInterface {
             OPERATOR_TYPE = 2,
             PARENTHESIS_TYPE = 3;
 
-
-    int tokenType;
-    String value;
-    int type;
-    int precedence;
+    private int tokenType;
+    private String value;
+    private int type;
+    private int precedence;
 
     Token(String token, int type, int precedence){
         this.value = token;

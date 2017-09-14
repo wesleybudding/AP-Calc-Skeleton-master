@@ -2,28 +2,9 @@ import java.util.Scanner;
 
 public class Main implements CalculatorInterface {
 
-    static final String OPERATOR_TOKENS = "-+*/^";
-
-    boolean nextTokenIsDouble(String token) {
-        Scanner in = new Scanner(token);
-        return in.hasNextDouble();
-    }
-
-    boolean nextTokenIsOperator(String token) {
-        System.out.println(token);
-        return token.matches("[-+*/^]");
-
-    }
-
-    boolean nextTokenIsParentheses(String token) {
-        System.out.println(token);
-        return token.matches("[()]");
-
-    }
-
     public TokenList readTokens(String input) {
         Scanner in = new Scanner(input);
-        TokenList result = new TokenList(input.length());
+        TokenList result = new TokenList();
 
         while(in.hasNext()){
             String currentToken = in.next();
@@ -37,20 +18,33 @@ public class Main implements CalculatorInterface {
                 result.add(parseParentheses(currentToken));
             }
             else{
-                System.out.println("error");
+                System.err.println("error");
                 System.exit(0);
             }
-
         }
         return null;
     }
 
-    Token parseNumber(String token){
+    private boolean nextTokenIsDouble(String token) {
+        Scanner in = new Scanner(token);
+        return in.hasNextDouble();
+    }
+
+    private boolean nextTokenIsOperator(String token) {
+        return token.matches("[-+*/^]");
+
+    }
+
+    private boolean nextTokenIsParentheses(String token) {
+        return token.matches("[()]");
+    }
+
+    private Token parseNumber(String token){
         Token t = new Token(token,1,-1);
         return t;
     }
 
-    Token parseOperator(String token){
+    private Token parseOperator(String token){
         if (token.matches("[-+]")){
             Token t = new Token(token,2,1);
             return t;
@@ -65,7 +59,7 @@ public class Main implements CalculatorInterface {
         }
     }
 
-    Token parseParentheses(String token){
+    private Token parseParentheses(String token){
         Token t = new Token(token,3,-1);
         return t;
     }
@@ -80,7 +74,7 @@ public class Main implements CalculatorInterface {
         return null;
     }
 
-    String read(){
+    private String read(){
         Scanner in = new Scanner(System.in);
         String result = in.nextLine();
         return result;
@@ -89,7 +83,6 @@ public class Main implements CalculatorInterface {
     private void start() {
         System.out.println("enter formula:");
         String formula = read();
-        System.out.println(formula);
         readTokens(formula);
     }
 
