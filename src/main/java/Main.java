@@ -79,14 +79,29 @@ public class Main implements CalculatorInterface {
                 output.add(t);
             }
             else if (t.getType() == 2){
+                while (stack.top().getPrecedence() >= t.getPrecedence()){
+                    output.add(stack.pop());
+                }
+                stack.push(t);
+            }
+            else if (t.getType() == 3){
+                if(t.getValue().equals("(")){
+                    stack.push(t);
+                }
+                else if (t.getValue().equals(")")){
+                    while(!stack.top().getValue().equals("(")){
+                        output.add(stack.pop());
+                    }
+                    stack.pop();
+                }
 
             }
-            else{
 
+            while(stack.size() != 0){
+                output.add(stack.pop());
             }
-
         }
-        return null;
+        return output;
     }
 
     private String read(){

@@ -1,3 +1,5 @@
+import java.util.EmptyStackException;
+
 /**
  * Created by lucasfaijdherbe on 15-09-17.
  */
@@ -38,15 +40,17 @@ public class TokenStack implements  TokenStackInterface {
     public Token pop() {
         if (top != 0){
             return stack[--top];
+        } else{
+            throw new EmptyStackException();
         }
-        return null;
     }
 
     public Token top() {
         if (top != 0){
             return stack[top - 1];
+        } else{
+            throw new EmptyStackException();
         }
-        return null;
     }
 
     public int size() {
