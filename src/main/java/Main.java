@@ -22,7 +22,7 @@ public class Main implements CalculatorInterface {
                 System.exit(0);
             }
         }
-        return null;
+        return result;
     }
 
     private boolean nextTokenIsDouble(String token) {
@@ -94,13 +94,13 @@ public class Main implements CalculatorInterface {
                     }
                     stack.pop();
                 }
-
-            }
-
-            while(stack.size() != 0){
-                output.add(stack.pop());
             }
         }
+
+        while (stack.size() != 0) {
+            output.add(stack.pop());
+        }
+
         return output;
     }
 
@@ -113,7 +113,10 @@ public class Main implements CalculatorInterface {
     private void start() {
         System.out.println("enter formula:");
         String formula = read();
-        readTokens(formula);
+        TokenList t = shuntingYard(readTokens(formula));
+        for(int i = 0; i < t.size(); i++){
+            System.out.println(t.get(i).getValue());
+        }
     }
 
     public static void main(String[] argv) {

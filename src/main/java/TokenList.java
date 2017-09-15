@@ -61,7 +61,7 @@ public class TokenList implements TokenList_interface {
     }
 
     public int size() {
-        return top-1;
+        return top;
     }
 
     boolean withinRange(int i){

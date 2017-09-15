@@ -38,19 +38,18 @@ public class TokenStack implements  TokenStackInterface {
     }
 
     public Token pop() {
-        if (top != 0){
+        if (top != 0) {
             return stack[--top];
-        } else{
-            throw new EmptyStackException();
+        } else {
+            return null;
         }
     }
 
     public Token top() {
         if (top != 0){
             return stack[top - 1];
-        } else{
-            throw new EmptyStackException();
         }
+        return new Token("0",0,0);
     }
 
     public int size() {
