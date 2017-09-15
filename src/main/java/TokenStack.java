@@ -1,31 +1,30 @@
 /**
- * @elements Tokens of the type TokenInterface
- * @structure linear
- * @domain all rows of tokens
- **/
-public interface TokenStack {
+ * Created by lucasfaijdherbe on 15-09-17.
+ */
+public class TokenStack implements  TokenStackInterface {
 
-    /**
-     * @pre -
-     * @post value TokenInterface is now at the top of the stack.
-     */
-    void push(TokenInterface token);
+    private Token[] stack;
+    private int top;
 
-    /**
-     * @pre The stack is not empty
-     * @post The value at the top of the stack is returned and deleted.
-     */
-    TokenInterface pop();
+    TokenStack(){
+        stack = new Token[1000000];
+        top = 0;
+    }
 
-    /**
-     * @pre The stack is not empty
-     * @post The value at the top of the stack is returned.
-     */
-    TokenInterface top();
+    public void push(Token token) {
+        stack[top] = token;
+        top++;
+    }
 
-    /**
-     * @pre -
-     * @post The number of elements on the stack is returned
-     */
-    int size();
+    public Token pop() {
+        return null;
+    }
+
+    public Token top() {
+        return null;
+    }
+
+    public int size() {
+        return 0;
+    }
 }

@@ -13,8 +13,16 @@ public class Token implements TokenInterface {
 
     Token(String token, int type, int precedence){
         this.value = token;
-        this.type = type;
         this.precedence = precedence;
+
+        switch(type){
+            case 1: this.type = NUMBER_TYPE;
+            break;
+            case 2: this.type = OPERATOR_TYPE;
+            break;
+            case 3: this.type = PARENTHESIS_TYPE;
+            break;
+        }
     }
 
     public String getValue() {

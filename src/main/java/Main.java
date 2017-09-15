@@ -70,7 +70,22 @@ public class Main implements CalculatorInterface {
     }
 
     public TokenList shuntingYard(TokenList tokens) {
-        // TODO: Implement this
+        TokenList output = new TokenList();
+        TokenStack stack = new TokenStack();
+
+        for(int i = 0; i < tokens.size(); i++){
+            Token t = tokens.get(i);
+            if(t.getType() == 1){
+                output.add(t);
+            }
+            else if (t.getType() == 2){
+
+            }
+            else{
+
+            }
+
+        }
         return null;
     }
 
