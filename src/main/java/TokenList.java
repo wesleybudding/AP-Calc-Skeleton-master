@@ -4,15 +4,35 @@
 public class TokenList implements TokenList_interface {
 
     private Token[] array;
-    private int top = 0;
+    private int top;
+    private int arraySize;
 
     TokenList(){
-        array = new Token[100000000];
+        top = 0;
+        arraySize = 50;
+        array = new Token[arraySize];
     }
 
     public void add(Token token) {
-        array[top] = token;
-        top++;
+        if (top < arraySize){
+            array[top] = token;
+            top++;
+        }
+        else{
+            enlargeArray();
+        }
+    }
+
+    private void enlargeArray(){
+        Token[] copyArray = new Token[arraySize];
+        for(int i = 0; i < arraySize; i++){
+            copyArray[i] = array[i];
+        }
+        array = new Token[arraySize *=2];
+
+        for(int i = 0; i < copyArray.length; i++){
+            array[i] = copyArray[i];
+        }
     }
 
     public void remove(int index) {
@@ -20,9 +40,6 @@ public class TokenList implements TokenList_interface {
             for (int i = index; i < --top; i++) {
                 array[i] = array[i + 1];
             }
-        }
-        else{
-            throw new ArrayIndexOutOfBoundsException();
         }
     }
 
@@ -33,6 +50,7 @@ public class TokenList implements TokenList_interface {
             }
             array[index] = token;
         }
+
     }
 
     public Token get(int index) {
@@ -47,7 +65,7 @@ public class TokenList implements TokenList_interface {
     }
 
     boolean withinRange(int i){
-        return i <= top && i >= 0;
+        return i <= arraySize && i >= 0;
     }
 
 }

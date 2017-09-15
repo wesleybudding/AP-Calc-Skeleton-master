@@ -7,7 +7,7 @@ public interface TokenStackInterface {
 
     /**
      * @pre -
-     * @post value TokenInterface is now at the top of the stack.
+     * @post value Token is now at the top of the stack.
      */
     void push(Token token);
 
