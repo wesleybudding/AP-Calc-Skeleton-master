@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Main implements CalculatorInterface {
 
@@ -74,30 +73,45 @@ public class Main implements CalculatorInterface {
 
     public Double rpn(String string) {
 
-        Stack<Double> stck = new Stack<Double>();
+        Stack stack_rpn = new Stack();
         double final_result = 0;
         String inputToken[] = string.split("\\s+");
+
         for(String token : inputToken){
             double result;
             switch(token){
                 case "+":
-                    final_result = stck.pop() + stck.pop();
-                    stck.push(final_result);
-                    System.out.println(final_result);
+                    final_result = stack_rpn.pop() + stack_rpn.pop();
+                    stack_rpn.push(final_result);
                     break;
                 case "-":
-                    final_result = -stck.pop() + stck.pop();
-                    stck.push(final_result);
-                    System.out.println(final_result);
+                    final_result = -stack_rpn.pop() + stack_rpn.pop();
+                    stack_rpn.push(final_result);
                     break;
                 case "*":
-                    final_result = stck.pop() * stck.pop();
-                    stck.push(final_result);
-                    System.out.println(final_result);
+                    final_result = stack_rpn.pop() * stack_rpn.pop();;
+                    stack_rpn.push(final_result);
+                    break;
+                case "/":
+                    double divisor = stack_rpn.pop();
+                    final_result =  stack_rpn.pop() / divisor;
+                    stack_rpn.push(final_result);
+                    break;
+                case "^":
+                    double power = stack_rpn.pop();
+                    final_result = stack_rpn.pop();
+                    double value = final_result;
+                    if(power==0){
+                        final_result=1;
+                    }
+                    while(power>1){
+                        final_result = final_result*value;
+                        power--;
+                    }
+                    stack_rpn.push(final_result);
                     break;
                 default :
-                    stck.push(Double.parseDouble(token));
-                    System.out.println(final_result);
+                    stack_rpn.push(Double.parseDouble(token));
                     break;
             }
 
@@ -147,15 +161,16 @@ public class Main implements CalculatorInterface {
     }
 
     private void start() {
-        System.out.println("enter formula:");
-        String formula = read();
-        TokenList t = shuntingYard(readTokens(formula));
-        for(int i = 0; i < t.size(); i++){
-            System.out.println(t.get(i).getValue());
-        }
-        String test = "3 2 - 1 +";
+//        System.out.println("enter formula:");
+//        String formula = read();
+//        TokenList t = shuntingYard(readTokens(formula));
+//        for(int i = 0; i < t.size(); i++){
+//            System.out.println(t.get(i).getValue());
+//        }
+        String test = "1 6 + 2 - 5 * 5 / 3 ^";
         Double awnser = rpn(test);
         System.out.println(awnser);
+
     }
 
     public static void main(String[] argv) {
