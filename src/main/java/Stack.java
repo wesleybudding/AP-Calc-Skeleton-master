@@ -7,6 +7,7 @@ public class Stack implements DoubleStack{
     public void push(Double element) {
         item = element;
         elements++;
+        //work in progress
     }
 
     public Double pop() {
