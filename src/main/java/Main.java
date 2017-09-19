@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main implements CalculatorInterface {
 
@@ -24,6 +25,12 @@ public class Main implements CalculatorInterface {
         }
         return result;
     }
+
+    @Override
+    public Double rpn(TokenList tokens) {
+        return null;
+    }
+
 
     private boolean nextTokenIsDouble(String token) {
         Scanner in = new Scanner(token);
@@ -63,10 +70,39 @@ public class Main implements CalculatorInterface {
         Token t = new Token(token,3,-1);
         return t;
     }
+    //TokenList tokens
 
-    public Double rpn(TokenList tokens) {
-        // TODO: Implement this
-        return null;
+    public Double rpn(String string) {
+
+        Stack<Double> stck = new Stack<Double>();
+        double final_result = 0;
+        String inputToken[] = string.split("\\s+");
+        for(String token : inputToken){
+            double result;
+            switch(token){
+                case "+":
+                    final_result = stck.pop() + stck.pop();
+                    stck.push(final_result);
+                    System.out.println(final_result);
+                    break;
+                case "-":
+                    final_result = -stck.pop() + stck.pop();
+                    stck.push(final_result);
+                    System.out.println(final_result);
+                    break;
+                case "*":
+                    final_result = stck.pop() * stck.pop();
+                    stck.push(final_result);
+                    System.out.println(final_result);
+                    break;
+                default :
+                    stck.push(Double.parseDouble(token));
+                    System.out.println(final_result);
+                    break;
+            }
+
+        }
+        return final_result;
     }
 
     public TokenList shuntingYard(TokenList tokens) {
@@ -117,6 +153,9 @@ public class Main implements CalculatorInterface {
         for(int i = 0; i < t.size(); i++){
             System.out.println(t.get(i).getValue());
         }
+        String test = "3 2 - 1 +";
+        Double awnser = rpn(test);
+        System.out.println(awnser);
     }
 
     public static void main(String[] argv) {
