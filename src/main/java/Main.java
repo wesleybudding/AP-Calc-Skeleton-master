@@ -6,6 +6,9 @@ public class Main implements CalculatorInterface {
         Scanner in = new Scanner(input);
         TokenList result = new TokenList();
 
+        int openParenthesesCounter = 0;
+        int closeParenthesesCounter = 0;
+
         while(in.hasNext()){
             String currentToken = in.next();
             if(nextTokenIsDouble(currentToken)){
@@ -17,6 +20,11 @@ public class Main implements CalculatorInterface {
             else if(nextTokenIsParentheses(currentToken)){
                 result.add(parseParentheses(currentToken));
 
+                if (currentToken.equals("(")){
+                    openParenthesesCounter++;
+                } else if (currentToken.equals(")")){
+                    closeParenthesesCounter++;
+                }
             }
             else{
                 System.err.println("Error: Invalid input. Make sure you separate all input with whitespaces, and you only input numbers, operators ( + - * / ^) and parentheses.");
@@ -24,6 +32,11 @@ public class Main implements CalculatorInterface {
             }
         }
 
+        if (openParenthesesCounter != closeParenthesesCounter){
+            System.out.println("Incorrect use of parentheses. Make sure you use both and opening and closing parenthesis.");
+            System.exit(1);
+        }
+        
         return result;
     }
 
