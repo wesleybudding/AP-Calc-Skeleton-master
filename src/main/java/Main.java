@@ -115,7 +115,6 @@ public class Main implements CalculatorInterface {
                     stack_rpn.push(Double.parseDouble(input.get(i).getValue()));
                     break;
             }
-
         }
 
         return finalResult;
