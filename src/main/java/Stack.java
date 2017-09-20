@@ -2,24 +2,45 @@
  * Created by wesleybudding on 18/09/2017.
  */
 public class Stack implements DoubleStack{
-    static final int MAX_ITEMS=100;
-    private int elements = 0;
-    private double item[];
+    int amountItems;
+    private int numberOfElements = 0;
+    private double[] item;
 
 
     Stack(){
-        item = new double[MAX_ITEMS];
-        elements = 0;
+        amountItems=5;
+        item = new double[amountItems];
+        numberOfElements = 0;
     }
 
     public void push(Double element) {
-        item [elements]= element;
-        elements++;
+        item [numberOfElements]= element;
+        numberOfElements++;
+        if(element>numberOfElements){
+            doubleStack();
+        }
+    }
+
+    public void doubleStack(){
+        double[] copyItem;
+        copyItem = new double[amountItems];
+
+        for(int n=0; n < numberOfElements; n++){
+            copyItem[n] = item[n];
+        }
+
+        amountItems*=2;
+        item = new double[amountItems];
+
+        for(int n=0; n < numberOfElements; n++){
+            item[n] = copyItem[n];
+        }
+
     }
 
     public Double pop() {
-        elements--;
-        return item[elements];
+        numberOfElements--;
+        return item[numberOfElements];
     }
 
     public Double top() {
