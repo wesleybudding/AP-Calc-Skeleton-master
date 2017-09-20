@@ -77,39 +77,39 @@ public class Main implements CalculatorInterface {
     public Double rpn(TokenList input) {
 
         Stack stack_rpn = new Stack();
-        double final_result = Double.parseDouble(input.get(0).getValue());
+        double finalResult = Double.parseDouble(input.get(0).getValue());
 
         for (int i = 0; i < input.size(); i++){
             switch(input.get(i).getValue()){
                 case "+":
-                    final_result = stack_rpn.pop() + stack_rpn.pop();
-                    stack_rpn.push(final_result);
+                    finalResult = stack_rpn.pop() + stack_rpn.pop();
+                    stack_rpn.push(finalResult);
                     break;
                 case "-":
-                    final_result = -stack_rpn.pop() + stack_rpn.pop();
-                    stack_rpn.push(final_result);
+                    finalResult = -stack_rpn.pop() + stack_rpn.pop();
+                    stack_rpn.push(finalResult);
                     break;
                 case "*":
-                    final_result = stack_rpn.pop() * stack_rpn.pop();
-                    stack_rpn.push(final_result);
+                    finalResult = stack_rpn.pop() * stack_rpn.pop();
+                    stack_rpn.push(finalResult);
                     break;
                 case "/":
                     double divisor = stack_rpn.pop();
-                    final_result =  stack_rpn.pop() / divisor;
-                    stack_rpn.push(final_result);
+                    finalResult =  stack_rpn.pop() / divisor;
+                    stack_rpn.push(finalResult);
                     break;
                 case "^":
                     double power = stack_rpn.pop();
-                    final_result = stack_rpn.pop();
-                    double value = final_result;
+                    finalResult = stack_rpn.pop();
+                    double value = finalResult;
                     if(power==0){
-                        final_result=1;
+                        finalResult=1;
                     }
                     while(power>1){
-                        final_result = final_result*value;
+                        finalResult = finalResult*value;
                         power--;
                     }
-                    stack_rpn.push(final_result);
+                    stack_rpn.push(finalResult);
                     break;
                 default :
                     stack_rpn.push(Double.parseDouble(input.get(i).getValue()));
@@ -118,7 +118,7 @@ public class Main implements CalculatorInterface {
 
         }
 
-        return final_result;
+        return finalResult;
     }
 
     public TokenList shuntingYard(TokenList tokens) {
