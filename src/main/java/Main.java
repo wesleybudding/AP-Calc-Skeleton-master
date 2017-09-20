@@ -16,20 +16,16 @@ public class Main implements CalculatorInterface {
             }
             else if(nextTokenIsParentheses(currentToken)){
                 result.add(parseParentheses(currentToken));
+
             }
             else{
-                System.err.println("error");
-                System.exit(0);
+                System.err.println("Error: Invalid input. Make sure you separate all input with whitespaces, and you only input numbers, operators ( + - * / ^) and parentheses.");
+                System.exit(1);
             }
         }
+
         return result;
     }
-
-    @Override
-    public Double rpn(TokenList tokens) {
-        return null;
-    }
-
 
     private boolean nextTokenIsDouble(String token) {
         Scanner in = new Scanner(token);
@@ -46,40 +42,32 @@ public class Main implements CalculatorInterface {
     }
 
     private Token parseNumber(String token){
-        Token t = new Token(token,1,-1);
-        return t;
+        return new Token(token,1,-1);
     }
 
     private Token parseOperator(String token){
         if (token.matches("[-+]")){
-            Token t = new Token(token,2,1);
-            return t;
+            return new Token(token,2,1);
         }
         else if (token.matches("[*/]")){
-            Token t = new Token(token,2,2);
-            return t;
+            return new Token(token,2,2);
         }
         else{
-            Token t = new Token(token,2,3);
-            return t;
+            return new Token(token,2,3);
         }
     }
 
     private Token parseParentheses(String token){
-        Token t = new Token(token,3,-1);
-        return t;
+        return new Token(token,3,-1);
     }
-    //TokenList tokens
 
-    public Double rpn(String string) {
+    public Double rpn(TokenList input) {
 
         Stack stack_rpn = new Stack();
-        double final_result = 0;
-        String inputToken[] = string.split("\\s+");
+        double final_result = Double.parseDouble(input.get(0).getValue());
 
-        for(String token : inputToken){
-            double result;
-            switch(token){
+        for (int i = 0; i < input.size(); i++){
+            switch(input.get(i).getValue()){
                 case "+":
                     final_result = stack_rpn.pop() + stack_rpn.pop();
                     stack_rpn.push(final_result);
@@ -89,7 +77,7 @@ public class Main implements CalculatorInterface {
                     stack_rpn.push(final_result);
                     break;
                 case "*":
-                    final_result = stack_rpn.pop() * stack_rpn.pop();;
+                    final_result = stack_rpn.pop() * stack_rpn.pop();
                     stack_rpn.push(final_result);
                     break;
                 case "/":
@@ -111,11 +99,12 @@ public class Main implements CalculatorInterface {
                     stack_rpn.push(final_result);
                     break;
                 default :
-                    stack_rpn.push(Double.parseDouble(token));
+                    stack_rpn.push(Double.parseDouble(input.get(i).getValue()));
                     break;
             }
 
         }
+
         return final_result;
     }
 
@@ -154,23 +143,21 @@ public class Main implements CalculatorInterface {
         return output;
     }
 
-    private String read(){
-        Scanner in = new Scanner(System.in);
-        String result = in.nextLine();
-        return result;
-    }
-
     private void start() {
-//        System.out.println("enter formula:");
-//        String formula = read();
-//        TokenList t = shuntingYard(readTokens(formula));
-//        for(int i = 0; i < t.size(); i++){
-//            System.out.println(t.get(i).getValue());
-//        }
-        String test = "1 6 + 2 - 5 * 5 / 3 ^";
-        Double awnser = rpn(test);
-        System.out.println(awnser);
+        System.out.println("enter formula: - enter Q to exit");
 
+        Scanner in = new Scanner(System.in);
+
+        while(in.hasNext()){
+                String formula = in.nextLine();
+                if(formula.toUpperCase().equals("Q")) {
+                    System.exit(0);
+                } else{
+                    Double result = rpn(shuntingYard(readTokens(formula)));
+                    System.out.println(result);
+                }
+        }
+        System.exit(0);
     }
 
     public static void main(String[] argv) {
