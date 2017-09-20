@@ -36,7 +36,7 @@ public class Main implements CalculatorInterface {
             System.out.println("Incorrect use of parentheses. Make sure you use both and opening and closing parenthesis.");
             System.exit(1);
         }
-        
+
         return result;
     }
 
@@ -76,49 +76,53 @@ public class Main implements CalculatorInterface {
 
     public Double rpn(TokenList input) {
 
-        Stack stack_rpn = new Stack();
-        double final_result = Double.parseDouble(input.get(0).getValue());
+        Stack stackRPN = new Stack();
+
+        double finalResult = Double.parseDouble(input.get(0).getValue());
 
         for (int i = 0; i < input.size(); i++){
-            switch(input.get(i).getValue()){
+            String tokenValue = input.get(i).getValue();
+            switch(tokenValue){
                 case "+":
-                    final_result = stack_rpn.pop() + stack_rpn.pop();
-                    stack_rpn.push(final_result);
+                    finalResult = stackRPN.pop() + stackRPN.pop();
+                    stackRPN.push(finalResult);
                     break;
                 case "-":
-                    final_result = -stack_rpn.pop() + stack_rpn.pop();
-                    stack_rpn.push(final_result);
+                    finalResult = -stackRPN.pop() + stackRPN.pop();
+                    stackRPN.push(finalResult);
                     break;
                 case "*":
-                    final_result = stack_rpn.pop() * stack_rpn.pop();
-                    stack_rpn.push(final_result);
+                    finalResult = stackRPN.pop() * stackRPN.pop();
+                    stackRPN.push(finalResult);
                     break;
                 case "/":
-                    double divisor = stack_rpn.pop();
-                    final_result =  stack_rpn.pop() / divisor;
-                    stack_rpn.push(final_result);
+                    double divisor = stackRPN.pop();
+                    finalResult =  stackRPN.pop() / divisor;
+                    stackRPN.push(finalResult);
                     break;
                 case "^":
-                    double power = stack_rpn.pop();
-                    final_result = stack_rpn.pop();
-                    double value = final_result;
+                    double power = stackRPN.pop();
+                    finalResult = stackRPN.pop();
+                    double value = finalResult;
                     if(power==0){
-                        final_result=1;
+                        finalResult=1;
                     }
                     while(power>1){
-                        final_result = final_result*value;
+                        finalResult = finalResult*value;
                         power--;
                     }
-                    stack_rpn.push(final_result);
+                    stackRPN.push(finalResult);
                     break;
                 default :
-                    stack_rpn.push(Double.parseDouble(input.get(i).getValue()));
+                    stackRPN.push(Double.parseDouble(tokenValue));
                     break;
             }
-
         }
+//        while (stackRPN.size() != 0){
+//            finalResult = stackRPN.pop();
+//        }
 
-        return final_result;
+        return finalResult;
     }
 
     public TokenList shuntingYard(TokenList tokens) {
@@ -127,12 +131,15 @@ public class Main implements CalculatorInterface {
 
         for(int i = 0; i < tokens.size(); i++){
             Token t = tokens.get(i);
+
             if(t.getType() == 1){
                 output.add(t);
             }
             else if (t.getType() == 2){
-                while (stack.top().getPrecedence() >= t.getPrecedence()){
-                    output.add(stack.pop());
+                if(stack.top() != null){
+                    while (stack.top().getPrecedence() >= t.getPrecedence()){
+                        output.add(stack.pop());
+                    }
                 }
                 stack.push(t);
             }
@@ -152,7 +159,6 @@ public class Main implements CalculatorInterface {
         while (stack.size() != 0) {
             output.add(stack.pop());
         }
-
         return output;
     }
 

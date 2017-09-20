@@ -11,7 +11,7 @@ public class TokenStack implements  TokenStackInterface {
 
     TokenStack(){
         top = 0;
-        stackSize = 50;
+        stackSize = 5;
         stack = new Token[stackSize];
     }
 
@@ -30,7 +30,10 @@ public class TokenStack implements  TokenStackInterface {
         for(int i = 0; i < stackSize; i++){
             copyStack[i] = stack[i];
         }
-        stack = new Token[stackSize *=2];
+
+        stackSize*=2;
+        stack = new Token[stackSize];
+
 
         for(int i = 0; i < copyStack.length; i++){
             stack[i] = copyStack[i];
@@ -49,7 +52,7 @@ public class TokenStack implements  TokenStackInterface {
         if (top != 0){
             return stack[top - 1];
         }
-        return new Token("0",0,0);
+        return null;
     }
 
     public int size() {
